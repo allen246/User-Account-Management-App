@@ -21,7 +21,7 @@ Make sure you have the following installed on your machine:
 3. docker-compose build
 
 ## Celery Integration
-Integrated of Celery for sending forget emails asynchronously.
+Integrated for Celery for sending forget emails asynchronously.
 
 ## Usage
 1. docker-compose up
