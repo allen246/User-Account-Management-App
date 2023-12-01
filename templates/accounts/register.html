@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Registration Page{% endblock title %}
+
+{% block content %}
+    <div class="content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 contents">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="form-block">
+                                <div class="mb-4">
+                                    <h1>User Registration page</h1>
+                                </div>
+                                <span class="mb-0 text-muted">
+                                    {% if msg %}
+                                        {{ msg | safe }}
+                                    {% endif %}
+                                </span>
+                                <form  method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group first">
+                                        <label for="username">Username</label>
+                                        {{ form.username }}
+                                    </div>
+                                    <div class="form-group first">
+                                        <label for="email">Email</label>
+                                        {{ form.email}}
+                                    </div>
+                                    <div class="form-group last mb-4">
+                                        <label for="password">Password</label>
+                                        {{ form.password1 }}
+                                    </div>
+                                    <div class="form-group last mb-4">
+                                        <label for="password">confirm Password</label>
+                                        {{ form.password2 }}
+                                    </div>
+                                    <div class="form-group last mb-4">
+                                        <label for="mobile">Phone</label>
+                                        {{ form.mobile }}
+                                    </div>
+                                    <div class="form-group last mb-4">
+                                        <label for="userType">Country</label>
+                                        <select class="form-control" id="userType" name="country">
+                                            {% for choice in form.country.field.choices %}
+                                                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group last mb-4">
+                                        <label for="userType">Nationality</label>
+                                        <select class="form-control" id="userType" name="nationality">
+                                            {% for choice in form.nationality.field.choices %}
+                                                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group last mb-4">
+                                        <label for="userType">Role</label>
+                                        <select class="form-control" id="userType" name="role">
+                                            {% for choice in form.role.field.choices %}
+                                                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    {% if form.errors %}
+                                        <div class="text-danger">
+                                            {% for field, errors in form.errors.items %}
+                                                {% for error in errors %}
+                                                    <div class="text-danger">{{ field }}: {{ error }}</div>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                    <input type="submit"  value="Register" class="btn btn-pill text-white btn-block btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}
